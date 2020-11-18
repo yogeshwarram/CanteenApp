@@ -10,10 +10,19 @@
     <ListView
         android:id="@+id/itemListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
+        android:layout_weight="1"
+        android:layout_height="0dip"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Confirm Order"
+        android:background="#37FF00"
+        android:id="@+id/confirmOrderButton"
         />
 
 </LinearLayout>

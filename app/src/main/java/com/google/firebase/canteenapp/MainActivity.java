@@ -10,7 +10,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -35,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private int itemCount;
     private static final int RC_SIGN_IN = 1;
+    ArrayList<Items> items= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +52,21 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("items");
         mFirebaseAuth=FirebaseAuth.getInstance();
+        mItemListView.setDivider(getDrawable(R.drawable.divider));
+        mItemListView.setDividerHeight(1);
+        Button orderButton=(Button)findViewById(R.id.confirmOrderButton);
 
-
-        ArrayList<Items> items= new ArrayList<>();
         mItemAdapter=new ItemAdapter(this,R.layout.list_item,items);
         mItemListView.setAdapter(mItemAdapter);
 
-
+        //ConfirmOrder button Listener
+        orderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int total=calculateOrderTotal();
+                Toast.makeText(MainActivity.this,Integer.toString(total),Toast.LENGTH_SHORT).show();
+            }
+        });
 
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
@@ -77,8 +92,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+    }
+    //calculating total of all the selected items
+    public int calculateOrderTotal(){
+        int orderTotal=0;
+        for (Items item : items){
+            orderTotal+=item.getmQuantity()*Integer.parseInt(item.getPrice());
+        }
+        return orderTotal;
     }
 
+    //This will help to read data from firebase database
     public void attachDatabaseReadListener(){
         mChildEventListener=new ChildEventListener() {
             @Override
@@ -167,4 +193,8 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
 }
+
