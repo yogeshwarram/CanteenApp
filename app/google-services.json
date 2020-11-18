@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "74055168987",
+    "firebase_url": "https://my-project-60c98.firebaseio.com",
+    "project_id": "my-project-60c98",
+    "storage_bucket": "my-project-60c98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74055168987:android:6c4d8d74f279b82608adfe",
+        "android_client_info": {
+          "package_name": "com.google.firebase.canteenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74055168987-ou515cm0rau19jjdcdjm7tp6tuvjttu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAms7q8LXQzHcPlObraIW18bEYQlXgOWWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74055168987-ou515cm0rau19jjdcdjm7tp6tuvjttu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74055168987:android:fb0353d7f9dce08a08adfe",
+        "android_client_info": {
+          "package_name": "com.google.firebase.udacity.friendlychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74055168987-kn38veb2d35p78nni5706s3i1nbn59m2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.udacity.friendlychat",
+            "certificate_hash": "cd1855d326633b00868e4b856921da0ae53e757b"
+          }
+        },
+        {
+          "client_id": "74055168987-ou515cm0rau19jjdcdjm7tp6tuvjttu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAms7q8LXQzHcPlObraIW18bEYQlXgOWWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74055168987-ou515cm0rau19jjdcdjm7tp6tuvjttu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
