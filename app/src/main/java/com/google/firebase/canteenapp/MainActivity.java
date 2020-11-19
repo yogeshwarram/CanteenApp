@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    private int itemCount;
+    private String currentUserName;
+    private DatabaseReference mOrderDatabaseReference;
     private static final int RC_SIGN_IN = 1;
     ArrayList<Items> items= new ArrayList<>();
     @Override
@@ -54,20 +55,40 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth=FirebaseAuth.getInstance();
         mItemListView.setDivider(getDrawable(R.drawable.divider));
         mItemListView.setDividerHeight(1);
-        Button orderButton=(Button)findViewById(R.id.confirmOrderButton);
+
+        final TextView orderButton=(TextView)findViewById(R.id.confirmOrderButton);
+        TextView placeOrderButton=(TextView)findViewById(R.id.placeOrderButton);
+        final TextView quantityTextView=(TextView)findViewById(R.id.quantity_text_view);
 
         mItemAdapter=new ItemAdapter(this,R.layout.list_item,items);
         mItemListView.setAdapter(mItemAdapter);
 
         //ConfirmOrder button Listener
-        orderButton.setOnClickListener(new View.OnClickListener() {
+      orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int total=calculateOrderTotal();
                 Toast.makeText(MainActivity.this,Integer.toString(total),Toast.LENGTH_SHORT).show();
+                String details="Total = "+Integer.toString(total);
+                orderButton.setText(details);
             }
         });
 
+      placeOrderButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              for (Items item : items){
+                  if (item.getmQuantity()!=0){
+                        mOrderDatabaseReference.push().setValue(item);
+
+                  }
+              }
+              Toast.makeText(MainActivity.this,"Your Order has been placed",Toast.LENGTH_SHORT).show();
+              orderButton.setText("Confirm Order");
+          }
+      });
+
+      //THis is the auth state listener which will show login menu if user is not logged in
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -75,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 if (user!=null){
                     //signedin
+                    currentUserName=user.getDisplayName();
+                    mOrderDatabaseReference=mFirebaseDatabase.getReference("orders").child(currentUserName);
                     attachDatabaseReadListener();
                     Toast.makeText(MainActivity.this,"You are signed in.",Toast.LENGTH_SHORT).show();
                 }
@@ -137,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         mItemDatabaseReference.addChildEventListener(mChildEventListener);
     }
 
+    //This will remove all the items from the list once loggedout
     private void detachDatabaseLisener(){
         if (mChildEventListener!=null) {
             mItemDatabaseReference.removeEventListener(mChildEventListener);
