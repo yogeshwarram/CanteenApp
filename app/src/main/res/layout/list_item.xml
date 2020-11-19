@@ -49,8 +49,8 @@
 
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:text="+"
-        android:id="@+id/increment"
+        android:text="-"
+        android:id="@+id/decrement"
        
 
         />
@@ -68,8 +68,8 @@
 
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:text="-"
-        android:id="@+id/decrement"
+        android:text="+"
+        android:id="@+id/increment"
 
         />
 </LinearLayout>
