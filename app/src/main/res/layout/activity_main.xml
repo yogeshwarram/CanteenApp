@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/itemListView"
@@ -23,35 +22,24 @@
         android:layout_weight="0"
         android:orientation="horizontal"
 
-
         >
-
-        <TextView
-            android:id="@+id/confirmOrderButton"
-            android:layout_width="381dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/custombuttons"
-            android:gravity="center"
-            android:text="Confirm Total"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp"
-            android:textStyle="italic|bold"
-
-            />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:text="Confirm Order"
+        android:background="#37FF00"
+        android:id="@+id/confirmOrderButton"
+       android:gravity="center"
+        />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Place Order"
-            android:background="@drawable/custom2"
+            android:background="#FF0000"
             android:id="@+id/placeOrderButton"
             android:gravity="center"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:textStyle="italic|bold"
             />
     </LinearLayout>
 </LinearLayout>
