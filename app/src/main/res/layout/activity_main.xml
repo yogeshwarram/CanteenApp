@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/itemListView"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/linearLayout"
+        android:divider="@android:color/transparent"
+        android:transcriptMode="alwaysScroll"
+        android:layout_weight="1"
+        android:layout_height="0dip"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+
+        >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:text="Confirm Order"
+        android:background="#37FF00"
+        android:id="@+id/confirmOrderButton"
+       android:gravity="center"
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Place Order"
+            android:background="#FF0000"
+            android:id="@+id/placeOrderButton"
+            android:gravity="center"
+            />
+    </LinearLayout>
+</LinearLayout>
