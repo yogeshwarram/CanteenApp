@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen"
-            android:theme="@style/SplashScreen"
-            android:noHistory="true"
-            android:screenOrientation="portrait">
-
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".AddItem"/>
+        <activity android:name=".AddItem"
+            android:label="Add Items"/>
+        <activity android:name=".OrderDetails"
+            android:label="Orders"/>
+        <activity android:name=".CompleteDetails"
+            android:label="Order Details"/>
     </application>
 
 </manifest>

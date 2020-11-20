@@ -175,9 +175,14 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //This is for the option menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.order_detail:
+                Intent orderDetailsIntent = new Intent(this, OrderDetails.class);
+
+                startActivity(orderDetailsIntent);
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
                 return true;
@@ -218,7 +223,4 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
 }
-

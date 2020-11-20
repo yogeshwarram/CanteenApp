@@ -34,7 +34,7 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: Send items to server on click
-                Items mItem = new Items(mNameText.getText().toString(),mPriceText.getText().toString());
+                Items mItem = new Items(0,mNameText.getText().toString(),mPriceText.getText().toString());
                 mItemDatabaseReference.push().setValue(mItem);
                 // Clear input box
                 mNameText.setText("");

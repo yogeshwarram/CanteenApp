@@ -15,10 +15,11 @@ public class Items {
 
     }
 
-    public Items(String text, String Price) {
+    public Items(int quantity,String text, String Price) {
 
         this.name = text;
         this.price = Price;
+        this.mQuantity=quantity;
     }
 
     public String getName() {
