@@ -35,21 +35,24 @@ public class OrderDetails extends AppCompatActivity {
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
 
         final ListView listView = (ListView) findViewById(R.id.orderListView);
-        ArrayList<String> users=new ArrayList<String>();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.orderlistview, R.id.textView, users);
-        listView.setAdapter(arrayAdapter);
+        final ArrayList<Orders> users=new ArrayList<>();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final OrdersAdapter mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
+        listView.setAdapter(mOrdersAdapter);
+
+       listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(),CompleteDetails.class);
-                String itemValue = (String) listView.getItemAtPosition(i);
+             //   String itemValue = (String) listView.getItemAtPosition(i);
+                Orders mOrder=(Orders)listView.getItemAtPosition(i);
+                String itemValue=mOrder.getName();
                 intent.putExtra("username",itemValue);
-                //    intent.putExtra("itemName",itemName);
-                //  intent.putExtra("price",itemprice);
+               // mFirebaseDatabase.getReference("orders").child(itemValue).removeValue();
                startActivity(intent);
             }
         });
+
 
         mChildEventListener=new ChildEventListener() {
             @Override
@@ -57,7 +60,7 @@ public class OrderDetails extends AppCompatActivity {
 
                 final String name= snapshot.getKey();
               //  String message= "Order Details of \n"+name;
-                arrayAdapter.add(name);
+                mOrdersAdapter.add(new Orders(name));
 
             }
 
