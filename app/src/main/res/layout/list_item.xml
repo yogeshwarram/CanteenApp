@@ -1,71 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:orientation="horizontal"
-    android:padding="10dp">
-    <LinearLayout
-        android:layout_width="260dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+     
+
+        >
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/image"
+            android:src="@mipmap/ic_launcher"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Text"
+            android:textStyle="italic"
+            android:layout_toRightOf="@id/image"
+            android:layout_toEndOf="@id/image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="sans-serif-medium"
             android:textSize="20sp"
             android:layout_gravity="center_vertical"
+            android:textColor="@android:color/black"
             android:gravity="center"
             android:id="@+id/name"
             tools:text="ItemName"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="Price : Rs "
-                android:textColor="#a8a0a0"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/price"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                tools:text="Price"
-                android:textColor="#a8a0a0"/>
-        </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="42dp"
-            android:text="-"
-            android:id="@+id/decrement"/>
         <TextView
-            android:id="@+id/quantity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"/>
+            android:textSize="15sp"
+            android:id="@+id/price_rupees"
+            android:textStyle="italic"
+            android:layout_toRightOf="@id/image"
+            android:layout_toEndOf="@id/image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_below="@id/name"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="Price : Rs "
+            android:textColor="#a8a0a0"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/price"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="italic"
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            tools:text="Price"
+            android:layout_marginTop="5dp"
+            android:textColor="#a8a0a0"
+            android:layout_toRightOf="@id/price_rupees"
+            android:layout_toEndOf="@id/price_rupees"
+            android:layout_below="@id/name"/>
+
+
         <Button
             android:layout_width="40dp"
             android:layout_height="42dp"
             android:text="+"
-            android:id="@+id/increment"/>
-    </LinearLayout>
-</LinearLayout>
+            android:id="@+id/increment"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="30dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="13dp"
+            android:layout_toLeftOf="@id/increment"
+            android:text="0"
+            android:textAlignment="center"
+            android:textSize="23sp"
+            android:padding="6dp"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:text="-"
+            android:id="@+id/decrement"
+            android:layout_toLeftOf="@id/quantity_text_view"
+            android:layout_marginTop="13dp"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

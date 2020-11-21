@@ -63,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("items");
         mFirebaseAuth=FirebaseAuth.getInstance();
-        mItemListView.setDivider(getDrawable(R.drawable.divider));
-        mItemListView.setDividerHeight(1);
+
 
         final TextView orderButton=(TextView)findViewById(R.id.confirmOrderButton);
         TextView placeOrderButton=(TextView)findViewById(R.id.placeOrderButton);
