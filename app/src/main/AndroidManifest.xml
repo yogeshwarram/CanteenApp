@@ -22,6 +22,7 @@
             android:label="Orders"/>
         <activity android:name=".CompleteDetails"
             android:label="Order Details"/>
+        <activity android:name=".PaymentActivity"/>
     </application>
 
 </manifest>
