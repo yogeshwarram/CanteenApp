@@ -2,6 +2,7 @@ package com.google.firebase.canteenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,8 @@ public class OrderDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_details);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
 
@@ -86,5 +89,16 @@ public class OrderDetails extends AppCompatActivity {
         };
         mItemDatabaseReference.addChildEventListener(mChildEventListener);
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                Intent intent=new Intent(OrderDetails.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     }

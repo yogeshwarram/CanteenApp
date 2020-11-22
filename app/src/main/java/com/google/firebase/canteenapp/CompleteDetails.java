@@ -2,6 +2,7 @@ package com.google.firebase.canteenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,10 @@ public class CompleteDetails extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.complete_details);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
 
@@ -84,5 +89,17 @@ public class CompleteDetails extends AppCompatActivity {
         };
         mItemDatabaseReference.addChildEventListener(mChildEventListener);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                Intent intent=new Intent(CompleteDetails.this, OrderDetails.class);
+                startActivity(intent);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_activity);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         send = (Button) findViewById(R.id.send);
         amount = (EditText)findViewById(R.id.amount_et);
         note = (EditText)findViewById(R.id.note);
@@ -165,5 +168,17 @@ public class PaymentActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                Intent intent=new Intent(PaymentActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

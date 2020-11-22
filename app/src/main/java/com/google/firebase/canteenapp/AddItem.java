@@ -2,6 +2,7 @@ package com.google.firebase.canteenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,8 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_item);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         Intent intent = getIntent();
         mSendButton=(Button)findViewById(R.id.button);
         mNameText=(EditText)findViewById(R.id.enterName);
@@ -41,5 +44,18 @@ public class AddItem extends AppCompatActivity {
                 mPriceText.setText("");
             }
         });
+    }
+    //Back button in toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                //Write your logic here
+                Intent intent=new Intent(AddItem.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
