@@ -27,6 +27,7 @@ public class OrderDetails extends AppCompatActivity {
     private ChildEventListener mChildEventListener;
     private DatabaseReference mItemDatabaseReference;
     private FirebaseDatabase mFirebaseDatabase;
+    private OrdersAdapter mOrdersAdapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +35,14 @@ public class OrderDetails extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
 
         final ListView listView = (ListView) findViewById(R.id.orderListView);
         final ArrayList<Orders> users=new ArrayList<>();
 
-        final OrdersAdapter mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
+        mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
         listView.setAdapter(mOrdersAdapter);
 
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,5 +102,14 @@ public class OrderDetails extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mOrdersAdapter.clear();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
     }

@@ -188,10 +188,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.order_detail:
-                Intent orderDetailsIntent = new Intent(this, OrderDetails.class);
-
-                startActivity(orderDetailsIntent);
             case R.id.sign_out_menu:
                 AuthUI.getInstance().signOut(this);
                 return true;
@@ -199,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
                 //To load add_item.xml file
                 Intent intent = new Intent(this, AddItem.class);
                 startActivity(intent);
+            case R.id.order_detail:
+                Intent orderDetailsIntent = new Intent(this, OrderDetails.class);
+                startActivity(orderDetailsIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
