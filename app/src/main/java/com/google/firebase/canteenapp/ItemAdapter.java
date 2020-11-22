@@ -13,19 +13,22 @@ import androidx.annotation.Nullable;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAdapter extends ArrayAdapter<Items> {
 
+    ArrayList<Items> item;
     private int count;
-    public ItemAdapter(@NonNull Context context, int resource, @NonNull List<Items> objects) {
+    public ItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Items> objects) {
         super(context, resource, objects);
         count=0;
+        this.item=objects;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView == null) {
             convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.list_item, parent, false);
         }
@@ -41,11 +44,12 @@ public class ItemAdapter extends ArrayAdapter<Items> {
         nameTextView.setText(items.getName());
         priceTextView.setText(items.getPrice());
 
-
+        quantityTextView.setText(Integer.toString(items.getmQuantity()));
         // Added increment and decrement quantity button for each list item and also modified Items.java file accordingly
         incrementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 items.addToQuantity();
                 quantityTextView.setText(Integer.toString(items.getmQuantity()));
                 notifyDataSetChanged();
@@ -54,6 +58,7 @@ public class ItemAdapter extends ArrayAdapter<Items> {
         decrementButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 items.removeFromQuantity();
                 quantityTextView.setText(Integer.toString(items.getmQuantity()));
                 notifyDataSetChanged();
