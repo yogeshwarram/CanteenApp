@@ -188,16 +188,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.sign_out_menu:
-                AuthUI.getInstance().signOut(this);
-                return true;
             case R.id.add_item_menu:
                 //To load add_item.xml file
                 Intent intent = new Intent(this, AddItem.class);
                 startActivity(intent);
+                return true;
             case R.id.order_detail:
                 Intent orderDetailsIntent = new Intent(this, OrderDetails.class);
                 startActivity(orderDetailsIntent);
+                return true;
+            case R.id.sign_out_menu:
+                AuthUI.getInstance().signOut(this);
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
