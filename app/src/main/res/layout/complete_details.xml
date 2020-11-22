@@ -6,8 +6,10 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:text="Order Details of users"
+    android:text="Order Details of "
     android:gravity="center"
+    android:textColor="#000000"
+    android:textStyle="bold|italic"
     android:textSize="20dp"
     android:id="@+id/order_textview"
 

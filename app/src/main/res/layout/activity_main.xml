@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/confirmOrderButton"
-            android:layout_width="381dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@drawable/custombuttons"
