@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,6 +48,7 @@ public class AddItem extends AppCompatActivity {
                 mItemDatabaseReference.push().setValue(mItem);
              //   db.collection("items").document(mNameText.getText().toString()).set(mItem);
                 // Clear input box
+                Toast.makeText(getApplicationContext(),"Item Added Successfully",Toast.LENGTH_SHORT).show();
                 mNameText.setText("");
                 mPriceText.setText("");
             }
@@ -58,7 +60,7 @@ public class AddItem extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
-                Intent intent=new Intent(AddItem.this, MainActivity.class);
+                Intent intent=new Intent(AddItem.this, OrderDetails.class);
                 startActivity(intent);
                 finish();
             default:

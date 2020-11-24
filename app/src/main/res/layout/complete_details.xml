@@ -18,7 +18,7 @@
         android:id="@+id/testView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout"
+            android:layout_above="@+id/linearLayout"
         android:divider="@android:color/transparent"
         android:transcriptMode="alwaysScroll"
 

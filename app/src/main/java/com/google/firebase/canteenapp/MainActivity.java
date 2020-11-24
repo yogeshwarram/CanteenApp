@@ -5,26 +5,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.text.TextUtils;
+
 import android.util.Log;
-import android.widget.EditText;
+
 
 import java.util.ArrayList;
 
@@ -216,20 +209,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.add_item_menu:
-                //To load add_item.xml file
-                Intent intent = new Intent(this, AddItem.class);
-                startActivity(intent);
-                return true;
-            case R.id.order_detail:
-                Intent orderDetailsIntent = new Intent(this, OrderDetails.class);
-                startActivity(orderDetailsIntent);
-                return true;
             case R.id.sign_out_menu:
                 FirebaseAuth.getInstance().signOut();
                 Intent signOutIntent= new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(signOutIntent);
-     
+
                 return true;
 
             default:

@@ -79,7 +79,8 @@
             android:text="+"
             android:id="@+id/increment"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="13dp"/>
+            android:layout_marginTop="13dp"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/quantity_text_view"
@@ -98,7 +99,8 @@
             android:text="-"
             android:id="@+id/decrement"
             android:layout_toLeftOf="@id/quantity_text_view"
-            android:layout_marginTop="13dp"/>
+            android:layout_marginTop="13dp"
+            android:focusable="false"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
