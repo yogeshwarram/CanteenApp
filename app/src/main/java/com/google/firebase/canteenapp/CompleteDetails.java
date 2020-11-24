@@ -3,7 +3,9 @@ package com.google.firebase.canteenapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.api.DistributionOrBuilder;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,6 +48,9 @@ public class CompleteDetails extends AppCompatActivity {
         final ArrayList<String> users=new ArrayList<String>();
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.orderlistview, R.id.textView, users);
         listView.setAdapter(arrayAdapter);
+
+      //  Button deleteButton=(Button)findViewById(R.id.delete_btn);
+       // deleteButton.setVisibility(View.INVISIBLE);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference("orders").child(username);

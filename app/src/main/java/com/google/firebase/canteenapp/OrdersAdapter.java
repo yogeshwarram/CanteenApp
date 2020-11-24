@@ -47,6 +47,7 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
                 notifyDataSetChanged();
             }
         });
+
         return convertView;
     }
 }

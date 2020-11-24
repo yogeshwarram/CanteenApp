@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddItem extends AppCompatActivity {
     private Button mSendButton;
@@ -19,6 +21,8 @@ public class AddItem extends AppCompatActivity {
     private EditText mPriceText;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mItemDatabaseReference;
+    private FirebaseFirestore db= FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class AddItem extends AppCompatActivity {
                 // TODO: Send items to server on click
                 Items mItem = new Items(0,mNameText.getText().toString(),mPriceText.getText().toString());
                 mItemDatabaseReference.push().setValue(mItem);
+             //   db.collection("items").document(mNameText.getText().toString()).set(mItem);
                 // Clear input box
                 mNameText.setText("");
                 mPriceText.setText("");

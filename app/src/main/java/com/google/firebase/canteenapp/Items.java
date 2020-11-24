@@ -9,7 +9,7 @@ public class Items {
 
     private String name;
     private String price;
-    private int mQuantity;
+    public int mQuantity;
 
     public Items() {
 

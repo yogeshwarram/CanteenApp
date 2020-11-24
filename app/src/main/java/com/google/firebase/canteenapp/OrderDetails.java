@@ -2,6 +2,9 @@ package com.google.firebase.canteenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,11 +17,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -28,6 +37,8 @@ public class OrderDetails extends AppCompatActivity {
     private DatabaseReference mItemDatabaseReference;
     private FirebaseDatabase mFirebaseDatabase;
     private OrdersAdapter mOrdersAdapter;
+    private FirebaseFirestore db;
+    String mName;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +49,13 @@ public class OrderDetails extends AppCompatActivity {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
+        db=FirebaseFirestore.getInstance();
 
         final ListView listView = (ListView) findViewById(R.id.orderListView);
         final ArrayList<Orders> users=new ArrayList<>();
+
+        TextView emptyText = (TextView)findViewById(android.R.id.empty);
+        listView.setEmptyView(emptyText);
 
         mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
         listView.setAdapter(mOrdersAdapter);
@@ -59,13 +74,22 @@ public class OrderDetails extends AppCompatActivity {
         });
 
 
+
+    }
+
+    public void attachDatabaseListener(){
         mChildEventListener=new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 final String name= snapshot.getKey();
-              //  String message= "Order Details of \n"+name;
+
+                //below statements will extract user's full name using uid which we obtained in above statement
+
                 mOrdersAdapter.add(new Orders(name));
+                //  String message= "Order Details of \n"+name;
+
+                //
 
             }
 
@@ -91,6 +115,7 @@ public class OrderDetails extends AppCompatActivity {
         };
         mItemDatabaseReference.addChildEventListener(mChildEventListener);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -99,6 +124,18 @@ public class OrderDetails extends AppCompatActivity {
                 Intent intent=new Intent(OrderDetails.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            case R.id.add_item_menu:
+                //To load add_item.xml file
+                Intent intent1 = new Intent(this, AddItem.class);
+                startActivity(intent1);
+                return true;
+            case R.id.delete_items:
+                Intent deleteItems = new Intent(this, DeleteItems.class);
+                startActivity(deleteItems);
+                return true;
+            case R.id.sign_out_menu:
+                FirebaseAuth.getInstance().signOut();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -111,5 +148,15 @@ public class OrderDetails extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        attachDatabaseListener();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.admin_menu, menu);
+        return true;
+    }
+
+    //This is for the option menu
     }
