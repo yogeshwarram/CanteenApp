@@ -44,8 +44,8 @@ public class OrderDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_details);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+   //     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      //  getSupportActionBar().setHomeButtonEnabled(true);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
@@ -119,11 +119,13 @@ public class OrderDetails extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+         /**   case android.R.id.home:
                 //Write your logic here
                 Intent intent=new Intent(OrderDetails.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+          **/
+
             case R.id.add_item_menu:
                 //To load add_item.xml file
                 Intent intent1 = new Intent(this, AddItem.class);
@@ -135,6 +137,8 @@ public class OrderDetails extends AppCompatActivity {
                 return true;
             case R.id.sign_out_menu:
                 FirebaseAuth.getInstance().signOut();
+                Intent signOutIntent= new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(signOutIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
