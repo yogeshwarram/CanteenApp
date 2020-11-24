@@ -61,7 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-
+                                pb.setVisibility(ProgressBar.INVISIBLE);
+                                cardView.setVisibility(View.VISIBLE);
+                                Toast.makeText(getApplicationContext(),"Login Failed! Please try again",Toast.LENGTH_SHORT).show();
                             }
                         });
                 }
