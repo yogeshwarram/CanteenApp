@@ -174,11 +174,18 @@ public class PaymentActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
-                Intent intent=new Intent(PaymentActivity.this, MainActivity.class);
+                //This will directly go to the login page because loginactivity will pass the intent for the user's canteen name
+                Intent intent=new Intent(PaymentActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

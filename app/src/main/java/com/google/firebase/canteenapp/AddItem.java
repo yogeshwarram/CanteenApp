@@ -9,12 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddItem extends AppCompatActivity {
@@ -24,6 +30,9 @@ public class AddItem extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mItemDatabaseReference;
     private FirebaseFirestore db= FirebaseFirestore.getInstance();
+    private String currentUserId;
+    private String currentUserName;
+    private String canteenName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,9 +45,22 @@ public class AddItem extends AppCompatActivity {
         mNameText=(EditText)findViewById(R.id.enterName);
         mPriceText=(EditText)findViewById(R.id.enterPrice);
 
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mItemDatabaseReference = mFirebaseDatabase.getReference("items");
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        currentUserId=user.getUid();
+        DocumentReference docRef = db.collection("Users").document(currentUserId);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document=task.getResult();
+                currentUserName=document.getString("FullName");
+                canteenName=document.getString("canteenName");
+                mItemDatabaseReference=mFirebaseDatabase.getReference("items").child(canteenName);
+            }
+        });
+
+
+   //     mItemDatabaseReference = mFirebaseDatabase.getReference("items");
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +82,8 @@ public class AddItem extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
-                Intent intent=new Intent(AddItem.this, OrderDetails.class);
+                //This will directly go to the login page because loginactivity will pass the intent for the user's canteen name
+                Intent intent=new Intent(AddItem.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             default:

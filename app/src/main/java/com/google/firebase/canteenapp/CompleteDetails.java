@@ -41,7 +41,7 @@ public class CompleteDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String username = intent.getStringExtra("username");
-
+        String canteen = intent.getStringExtra("canteenName");
         TextView textView=(TextView)findViewById(R.id.order_textview);
         textView.setText("Order Details of user "+username);
         final ListView listView = (ListView) findViewById(R.id.testView);
@@ -53,7 +53,7 @@ public class CompleteDetails extends AppCompatActivity {
        // deleteButton.setVisibility(View.INVISIBLE);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mItemDatabaseReference = mFirebaseDatabase.getReference("orders").child(username);
+        mItemDatabaseReference = mFirebaseDatabase.getReference("orders").child(canteen).child(username);
 
 
 /**
@@ -101,7 +101,7 @@ public class CompleteDetails extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
-                Intent intent=new Intent(CompleteDetails.this, OrderDetails.class);
+                Intent intent=new Intent(CompleteDetails.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             default:

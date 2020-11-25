@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     private ProgressBar pb;
     private CardView cardView;
+    Intent intent1;
+    Intent intent2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         gotoRegister = findViewById(R.id.gotoRegister);
         pb = (ProgressBar) findViewById(R.id.loading_indicator);
        cardView=(CardView)findViewById(R.id.cardView);
-
+        intent1=new Intent(getApplicationContext(),OrderDetails.class);
+        intent2=new Intent(getApplicationContext(),MainActivity.class);
         // pb.setVisibility(ProgressBar.INVISIBLE);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                 //Identifying User
                 if(documentSnapshot.getString("isAdmin")!=null){
                     // user is admin
-                    startActivity(new Intent(getApplicationContext(),OrderDetails.class));
+                    String canteen=documentSnapshot.getString("canteenName");
+
+                    intent1.putExtra("canteenName",canteen);
+                    startActivity(intent1);
                     finish();
                 }
                 if(documentSnapshot.getString("isUser")!=null){
                     // user is customer
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    String canteen= documentSnapshot.getString("canteenName");
+                    intent2.putExtra("canteenName",canteen);
+                    startActivity(intent2);
                     finish();
                 }
             }
@@ -126,12 +134,16 @@ public class LoginActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if(documentSnapshot.getString("isAdmin")!=null){
                         // user is admin
-                        startActivity(new Intent(getApplicationContext(),OrderDetails.class));
+                        String canteen= documentSnapshot.getString("canteenName");
+                        intent1.putExtra("canteenName",canteen);
+                        startActivity(intent1);
                         finish();
                     }
                     if(documentSnapshot.getString("isUser")!=null){
                         // user is customer
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        String canteen= documentSnapshot.getString("canteenName");
+                        intent2.putExtra("canteenName",canteen);
+                        startActivity(intent2);
                         finish();
                     }
 

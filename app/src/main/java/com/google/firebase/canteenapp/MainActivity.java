@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private String mName;
     private String currentUserId;
+    private String canteenName;
     private static final int RC_SIGN_IN = 1;
 
     ArrayList<Items> items= new ArrayList<>();
@@ -61,9 +62,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        String canteen = intent.getStringExtra("canteenName");
+
+
         mItemListView=(ListView)findViewById(R.id.itemListView);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mItemDatabaseReference = mFirebaseDatabase.getReference().child("items");
+        mItemDatabaseReference = mFirebaseDatabase.getReference().child("items").child(canteen);
         mFirebaseAuth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
 
@@ -82,10 +87,13 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document=task.getResult();
                 currentUserName=document.getString("FullName");
-                mOrderDatabaseReference=mFirebaseDatabase.getReference("orders").child(currentUserName);
+                canteenName=document.getString("canteenName");
+                mOrderDatabaseReference=mFirebaseDatabase.getReference("orders").child(canteenName).child(currentUserName);
+           //     mItemDatabaseReference = mFirebaseDatabase.getReference().child("items").child(canteenName);
+
+
             }
         });
-
 
         //ConfirmOrder button Listener
       orderButton.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
             orderTotal+=item.getmQuantity()*Integer.parseInt(item.getPrice());
         }
-        Log.v("TOTAL",Integer.toString(orderTotal));
+
 
         return orderTotal;
     }
@@ -228,10 +236,12 @@ public class MainActivity extends AppCompatActivity {
       //  mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         detachDatabaseLisener();
         mItemAdapter.clear();
+
     }
     @Override
     protected void onResume() {
         super.onResume();
+
      //   mFirebaseAuth.addAuthStateListener(mAuthStateListener);
         attachDatabaseReadListener();
     }
@@ -249,4 +259,5 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

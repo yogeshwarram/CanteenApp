@@ -36,6 +36,9 @@ public class DeleteItems extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delete_items);
 
+        Intent i=getIntent();
+        String canteen=i.getStringExtra("canteenName");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -43,7 +46,7 @@ public class DeleteItems extends AppCompatActivity {
        // Button deleteButton=(Button)findViewById(R.id.delete_btn);
        // deleteButton.setVisibility(View.INVISIBLE);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mItemDatabaseReference = mFirebaseDatabase.getReference().child("items");
+        mItemDatabaseReference = mFirebaseDatabase.getReference().child("items").child(canteen);
         listView = (ListView) findViewById(R.id.deleteListView);
         mItemAdapter=new ItemAdapter(this,R.layout.list_item,deleteItems);
         listView.setAdapter(mItemAdapter);
@@ -109,7 +112,8 @@ public class DeleteItems extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //Write your logic here
-                Intent intent=new Intent(DeleteItems.this, OrderDetails.class);
+                //This will directly go to the login page because loginactivity will pass the intent for the user's canteen name
+                Intent intent=new Intent(DeleteItems.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             default:

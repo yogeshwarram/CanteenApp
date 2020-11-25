@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText fullName,email,password,phone;
+    EditText fullName,email,password,phone,canteenName;
     Button registerBtn,goToLogin;
     boolean valid = true;
     FirebaseAuth fAuth;
@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         phone=findViewById(R.id.registerPhone);
         registerBtn=findViewById(R.id.registerBtn);
         goToLogin=findViewById(R.id.gotoLogin);
+        canteenName=findViewById(R.id.registerCanteenName);
 
         isAdmin=findViewById(R.id.isAdmin);
         isUser = findViewById(R.id.isUser);
@@ -72,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                 checkField(email);
                 checkField(password);
                 checkField(phone);
+                checkField(canteenName);
 
                 // RadioButtons Validation
                 if(!(isAdmin.isChecked() || isUser.isChecked())){
@@ -92,10 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
                             userInfo.put("Email",email.getText().toString());
                             userInfo.put("PhoneNo",phone.getText().toString());
                             userInfo.put("Password",password.getText().toString());
+                            userInfo.put("canteenName",canteenName.getText().toString());
+
                             if(isAdmin.isChecked()){
                                 userInfo.put("isAdmin","1");
                             }
                             if(isUser.isChecked()){
+                              //  userInfo.put("isAdmin","0");
                                 userInfo.put("isUser","2");
 
                             }

@@ -38,7 +38,9 @@ public class OrderDetails extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private OrdersAdapter mOrdersAdapter;
     private FirebaseFirestore db;
-    String mName;
+    private TextView emptyText;
+    private ListView listView;
+    private String canteen;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +49,19 @@ public class OrderDetails extends AppCompatActivity {
    //     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       //  getSupportActionBar().setHomeButtonEnabled(true);
 
+        Intent intent1=getIntent();
+        canteen= intent1.getStringExtra("canteenName");
+
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders");
+        mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders").child(canteen);
         db=FirebaseFirestore.getInstance();
 
-        final ListView listView = (ListView) findViewById(R.id.orderListView);
+        listView = (ListView) findViewById(R.id.orderListView);
         final ArrayList<Orders> users=new ArrayList<>();
 
-        TextView emptyText = (TextView)findViewById(android.R.id.empty);
-        listView.setEmptyView(emptyText);
+        emptyText = (TextView)findViewById(android.R.id.empty);
+
 
         mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
         listView.setAdapter(mOrdersAdapter);
@@ -68,6 +74,7 @@ public class OrderDetails extends AppCompatActivity {
                 Orders mOrder=(Orders)listView.getItemAtPosition(i);
                 String itemValue=mOrder.getName();
                 intent.putExtra("username",itemValue);
+                intent.putExtra("canteenName",canteen);
                // mFirebaseDatabase.getReference("orders").child(itemValue).removeValue();
                startActivity(intent);
             }
@@ -133,6 +140,7 @@ public class OrderDetails extends AppCompatActivity {
                 return true;
             case R.id.delete_items:
                 Intent deleteItems = new Intent(this, DeleteItems.class);
+                deleteItems.putExtra("canteenName",canteen);
                 startActivity(deleteItems);
                 return true;
             case R.id.sign_out_menu:
@@ -153,6 +161,7 @@ public class OrderDetails extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         attachDatabaseListener();
+        listView.setEmptyView(emptyText);
     }
 
     @Override
