@@ -32,6 +32,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private String canteenName;
     private String canteen;
     private static final int RC_SIGN_IN = 1;
-
+    String can;
     ArrayList<Items> items= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         canteen = intent.getStringExtra("canteenName");
 
-
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        currentUserId=user.getUid();
         mItemListView=(ListView)findViewById(R.id.itemListView);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("items").child(canteen);
@@ -80,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mItemAdapter=new ItemAdapter(this,R.layout.list_item,items);
         mItemListView.setAdapter(mItemAdapter);
 
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        currentUserId=user.getUid();
+
         DocumentReference docRef = db.collection("Users").document(currentUserId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -90,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 currentUserName=document.getString("FullName");
                 canteenName=document.getString("canteenName");
                 mOrderDatabaseReference=mFirebaseDatabase.getReference("orders").child(canteenName).child(currentUserName);
-           //     mItemDatabaseReference = mFirebaseDatabase.getReference().child("items").child(canteenName);
-
 
             }
         });
