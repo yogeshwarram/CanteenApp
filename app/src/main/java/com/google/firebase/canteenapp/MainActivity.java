@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private String mName;
     private String currentUserId;
     private String canteenName;
+    private String canteen;
     private static final int RC_SIGN_IN = 1;
 
     ArrayList<Items> items= new ArrayList<>();
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        String canteen = intent.getStringExtra("canteenName");
+        canteen = intent.getStringExtra("canteenName");
 
 
         mItemListView=(ListView)findViewById(R.id.itemListView);
