@@ -2,7 +2,6 @@ package com.google.firebase.canteenapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     private ProgressBar pb;
-    private CardView cardView;
     Intent intent1;
     Intent intent2;
     @Override
@@ -42,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         gotoRegister = findViewById(R.id.gotoRegister);
         pb = (ProgressBar) findViewById(R.id.loading_indicator);
-       cardView=(CardView)findViewById(R.id.cardView);
         intent1=new Intent(getApplicationContext(),OrderDetails.class);
         intent2=new Intent(getApplicationContext(),MainActivity.class);
         // pb.setVisibility(ProgressBar.INVISIBLE);
@@ -50,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                cardView.setVisibility(View.INVISIBLE);
+
                 checkField(email);
                 checkField(password);
                 pb.setVisibility(ProgressBar.VISIBLE);
@@ -65,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 pb.setVisibility(ProgressBar.INVISIBLE);
-                                cardView.setVisibility(View.VISIBLE);
                                 Toast.makeText(getApplicationContext(),"Login Failed! Please try again",Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -123,8 +119,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        cardView=(CardView)findViewById(R.id.cardView);
-        cardView.setVisibility(View.INVISIBLE);
         pb = (ProgressBar) findViewById(R.id.loading_indicator);
         pb.setVisibility(ProgressBar.VISIBLE);
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
@@ -159,7 +153,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             pb.setVisibility(ProgressBar.INVISIBLE);
-            cardView.setVisibility(View.VISIBLE);
         }
     }
 }
