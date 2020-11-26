@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
-
-    <androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -19,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/layout3">
 
             <EditText
                 android:id="@+id/registerName"
@@ -29,6 +29,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
                 android:hint="Full Name"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +44,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
                 android:ems="10"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
@@ -54,6 +58,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
@@ -67,6 +73,8 @@
                 android:id="@+id/registerPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
@@ -81,6 +89,8 @@
                 android:id="@+id/registerCanteenName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="16dp"
@@ -98,7 +108,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="76dp"
-                android:text="Register As Canteen"
+                android:text="As CANTEEN"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/registerPhone" />
 
@@ -107,8 +119,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="76dp"
-                android:layout_marginEnd="16dp"
-                android:text="Register as User"
+                android:textColor="@color/colorBlack"
+                android:layout_marginEnd="0dp"
+                android:textStyle="bold"
+                android:text="As USER"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.565"
                 app:layout_constraintStart_toEndOf="@+id/isAdmin"
@@ -122,6 +136,9 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text="Create Account"
+                android:textStyle="bold|italic"
+                android:background="@drawable/layout_2"
+                android:textColor="@color/colorBlack"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,11 +147,15 @@
             <Button
                 android:id="@+id/gotoLogin"
                 android:layout_width="0dp"
+                app:layout_goneMarginTop="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorBlack"
                 android:layout_marginEnd="16dp"
+                android:textStyle="italic"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_edits"
                 android:text="Login"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
