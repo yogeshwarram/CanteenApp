@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Register"/>
         <activity android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
