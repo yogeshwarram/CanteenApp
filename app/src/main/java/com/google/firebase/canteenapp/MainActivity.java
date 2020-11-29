@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private String currentUserId;
     private String canteenName;
     private String canteen;
+    private TextView emptyText;
     private static final int RC_SIGN_IN = 1;
-    String can;
     ArrayList<Items> items= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         canteen = intent.getStringExtra("canteenName");
 
+        getSupportActionBar().setTitle(canteen+" Canteen");
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
         currentUserId=user.getUid();
         mItemListView=(ListView)findViewById(R.id.itemListView);
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
 
+        emptyText = (TextView)findViewById(android.R.id.empty);
+        emptyText.setVisibility(View.INVISIBLE);
         final TextView orderButton=(TextView)findViewById(R.id.confirmOrderButton);
         TextView placeOrderButton=(TextView)findViewById(R.id.placeOrderButton);
         final TextView quantityTextView=(TextView)findViewById(R.id.quantity_text_view);
@@ -244,6 +248,15 @@ public class MainActivity extends AppCompatActivity {
 
      //   mFirebaseAuth.addAuthStateListener(mAuthStateListener);
         attachDatabaseReadListener();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mItemListView.setEmptyView(emptyText);
+
+            }
+        }, 2000);
+
     }
 
     @Override

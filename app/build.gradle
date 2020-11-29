@@ -40,6 +40,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.google.firebase:firebase-firestore"
+    implementation "com.loopj.android:android-async-http:1.4.9"
+
 
 }
 apply plugin: 'com.google.gms.google-services'

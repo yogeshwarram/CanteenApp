@@ -7,7 +7,17 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     >
-
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="No Items"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
     <ListView
         android:id="@+id/itemListView"
         android:layout_width="match_parent"
@@ -54,4 +64,5 @@
             android:textStyle="italic|bold"
             />
     </LinearLayout>
+
 </LinearLayout>

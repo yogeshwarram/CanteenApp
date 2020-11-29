@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     RadioButton isAdmin,isUser;
     Intent intent1;
     Intent intent2;
+    final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn=findViewById(R.id.registerBtn);
         goToLogin=findViewById(R.id.gotoLogin);
         canteenName=findViewById(R.id.registerCanteenName);
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
         isAdmin=findViewById(R.id.isAdmin);
         isUser = findViewById(R.id.isUser);
 
@@ -97,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }, 2000);
 
-                ref.child("items").child(canteenName.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                ref.child("CanteenName").child(canteenName.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists() && isAdmin.isChecked()){
@@ -183,6 +184,9 @@ public class RegisterActivity extends AppCompatActivity {
                     df.set(userInfo);
                     if (isAdmin.isChecked()) {
                         String canteen = canteenName.getText().toString();
+                        Map<String,String>canteenInfo=new HashMap<>();
+                        canteenInfo.put("CanteenName",canteen);
+                        ref.child("CanteenName").child(canteenName.getText().toString()).setValue(canteenInfo);
                         intent1.putExtra("canteenName", canteen);
                         startActivity(intent1);
                         finish();

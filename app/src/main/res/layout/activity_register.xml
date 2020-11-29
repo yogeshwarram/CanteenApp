@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 <androidx.cardview.widget.CardView
+<<<<<<< Updated upstream
         android:layout_width="match_parent"
+=======
+        android:layout_width="0dp"
+>>>>>>> Stashed changes
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"

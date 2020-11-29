@@ -2,6 +2,7 @@ package com.google.firebase.canteenapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,8 +60,9 @@ public class OrderDetails extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.orderListView);
         final ArrayList<Orders> users=new ArrayList<>();
-
         emptyText = (TextView)findViewById(android.R.id.empty);
+        emptyText.setVisibility(View.INVISIBLE);
+
 
 
         mOrdersAdapter=new OrdersAdapter(this,R.layout.orderlistview,users);
@@ -93,7 +95,7 @@ public class OrderDetails extends AppCompatActivity {
 
                 //below statements will extract user's full name using uid which we obtained in above statement
 
-                mOrdersAdapter.add(new Orders(name));
+                mOrdersAdapter.add(new Orders(name,canteen));
                 //  String message= "Order Details of \n"+name;
 
                 //
@@ -161,7 +163,15 @@ public class OrderDetails extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         attachDatabaseListener();
-        listView.setEmptyView(emptyText);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                listView.setEmptyView(emptyText);
+                emptyText.setVisibility(View. VISIBLE);
+            }
+        }, 2000);
+
     }
 
     @Override
