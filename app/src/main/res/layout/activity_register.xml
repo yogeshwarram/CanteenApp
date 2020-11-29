@@ -5,30 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
-<androidx.cardview.widget.CardView
-<<<<<<< Updated upstream
-        android:layout_width="match_parent"
-=======
+    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
->>>>>>> Stashed changes
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-    >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/layout3">
-
-
 
             <EditText
                 android:id="@+id/registerName"
