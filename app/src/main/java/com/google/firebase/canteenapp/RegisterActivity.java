@@ -89,14 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                 checkField(password);
                 checkField(phone);
                 checkField(canteenName);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        createAccount();
 
-                    }
-                }, 2000);
 
                 ref.child("CanteenName").child(canteenName.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -107,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         else if (snapshot.exists() && isUser.isChecked()){
                             valid=true;
+                            checkField(canteenName);
                             Toast.makeText(RegisterActivity.this,"Please Wait !",Toast.LENGTH_SHORT).show();
                         }
                         else if (!snapshot.exists() && isUser.isChecked()){
@@ -129,6 +123,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,"Select the account Type",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        createAccount();
+
+                    }
+                }, 2000);
 
             }
         });

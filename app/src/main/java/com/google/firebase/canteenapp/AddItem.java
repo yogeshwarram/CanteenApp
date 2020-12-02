@@ -59,7 +59,6 @@ public class AddItem extends AppCompatActivity {
             }
         });
 
-
    //     mItemDatabaseReference = mFirebaseDatabase.getReference("items");
 
         mSendButton.setOnClickListener(new View.OnClickListener() {
