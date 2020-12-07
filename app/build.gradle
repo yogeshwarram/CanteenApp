@@ -41,6 +41,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "com.google.firebase:firebase-firestore"
     implementation "com.loopj.android:android-async-http:1.4.9"
+    implementation 'com.google.android.material:material:1.0.0'
 
 
 }

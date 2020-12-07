@@ -16,10 +16,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-public class OrderDetails extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DatabaseReference mOrderDatabaseReference;
     private ChildEventListener mChildEventListener;
     private DatabaseReference mItemDatabaseReference;
@@ -42,6 +47,7 @@ public class OrderDetails extends AppCompatActivity {
     private TextView emptyText;
     private ListView listView;
     private String canteen;
+    private DrawerLayout drawer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,15 @@ public class OrderDetails extends AppCompatActivity {
         Intent intent1=getIntent();
         canteen= intent1.getStringExtra("canteenName");
 
+        Toolbar toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        drawer=findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mItemDatabaseReference = mFirebaseDatabase.getReference().child("orders").child(canteen);
@@ -124,7 +139,7 @@ public class OrderDetails extends AppCompatActivity {
         };
         mItemDatabaseReference.addChildEventListener(mChildEventListener);
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -133,7 +148,7 @@ public class OrderDetails extends AppCompatActivity {
                 Intent intent=new Intent(OrderDetails.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-          **/
+
 
             case R.id.add_item_menu:
                 //To load add_item.xml file
@@ -154,6 +169,34 @@ public class OrderDetails extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+*/
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.add_item_menu:
+                //To load add_item.xml file
+                Intent intent1 = new Intent(this, AddItem.class);
+                startActivity(intent1);
+                break;
+
+            case R.id.delete_items:
+                Intent deleteItems = new Intent(this, DeleteItems.class);
+                deleteItems.putExtra("canteenName",canteen);
+                startActivity(deleteItems);
+                break;
+
+            case R.id.sign_out_menu:
+                FirebaseAuth.getInstance().signOut();
+                Intent signOutIntent= new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(signOutIntent);
+                break;
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -173,13 +216,13 @@ public class OrderDetails extends AppCompatActivity {
         }, 2000);
 
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.admin_menu, menu);
         return true;
     }
-
+*/
     //This is for the option menu
     }

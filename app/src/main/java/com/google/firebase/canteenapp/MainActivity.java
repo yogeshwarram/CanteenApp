@@ -2,7 +2,11 @@ package com.google.firebase.canteenapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 
@@ -26,6 +30,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,7 +46,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ItemAdapter mItemAdapter;
     private ListView mItemListView;
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private String canteenName;
     private String canteen;
     private TextView emptyText;
+    private DrawerLayout drawer;
     private static final int RC_SIGN_IN = 1;
     ArrayList<Items> items= new ArrayList<>();
     @Override
@@ -67,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         canteen = intent.getStringExtra("canteenName");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        drawer=findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
 
         getSupportActionBar().setTitle(canteen+" Canteen");
         FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
@@ -158,6 +175,20 @@ public class MainActivity extends AppCompatActivity {
         };
   **/
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu:
+                FirebaseAuth.getInstance().signOut();
+                Intent signOutIntent= new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(signOutIntent);
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     //calculating total of all the selected items
     public int calculateOrderTotal(){
         int orderTotal=0;
@@ -209,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
             mChildEventListener = null;
         }
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -233,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+*/
     @Override
     protected void onPause() {
         super.onPause();
@@ -272,5 +303,12 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

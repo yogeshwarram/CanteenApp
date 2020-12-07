@@ -14,6 +14,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 
 <style name="Register" parent="Theme.AppCompat.DayNight.DarkActionBar">
     <item name="actionBarTheme">@drawable/layout_1</item>

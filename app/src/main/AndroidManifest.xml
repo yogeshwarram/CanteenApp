@@ -20,13 +20,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/NoActionBar"
+            />
 
         <activity
             android:name=".AddItem"
             android:label="Add Items" />
         <activity
             android:name=".OrderDetails"
+            android:theme="@style/NoActionBar"
             android:label="Orders" />
         <activity
             android:name=".CompleteDetails"

@@ -2,8 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
+    <group android:checkableBehavior="single">
     <item
         android:id="@+id/sign_out_menu"
         android:title="Sign Out"
+        android:icon="@drawable/ic_sign_out"
         app:showAsAction="never"/>
+    </group>
 </menu>
