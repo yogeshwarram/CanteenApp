@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/empty_list"
+        android:text="No More Orders"
         android:textSize="20dp"
         android:textStyle="bold"
         android:visibility="gone"

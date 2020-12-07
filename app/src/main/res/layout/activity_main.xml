@@ -18,17 +18,7 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="No Items"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -54,7 +44,17 @@
 
 
         >
-
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="No Items"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
         <TextView
             android:id="@+id/confirmOrderButton"
             android:layout_width="match_parent"
