@@ -130,16 +130,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       placeOrderButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+              int count=0;
               for (Items item : items){
                   if (item.getmQuantity()!=0){
+                      count+=1;
                         mOrderDatabaseReference.push().setValue(item);
 
                   }
               }
-              Toast.makeText(MainActivity.this,"Your Order has been placed",Toast.LENGTH_SHORT).show();
-              orderButton.setText("Confirm Order");
-              Intent placeOrderIntent= new Intent(getApplicationContext(), PaymentActivity.class);
-              startActivity(placeOrderIntent);
+              if (count==0){
+                  Toast.makeText(MainActivity.this,"Please add items",Toast.LENGTH_SHORT).show();
+              }
+              else {
+                  Toast.makeText(MainActivity.this,"Your Order has been placed",Toast.LENGTH_SHORT).show();
+                  orderButton.setText("Confirm Order");
+                  Intent placeOrderIntent= new Intent(getApplicationContext(), PaymentActivity.class);
+                  startActivity(placeOrderIntent);
+              }
+
           }
       });
 
