@@ -28,13 +28,13 @@
             android:textSize="15sp"/>
         <Button
             android:id="@+id/delete_btn"
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:background="@drawable/tick"
+            android:background="@drawable/tick1"
             android:focusable="false"
             android:layout_marginEnd="10dp"
 

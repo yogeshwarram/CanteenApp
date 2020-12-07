@@ -6,20 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/layout3">
+            android:background="@drawable/layout_1">
+
+
 
             <EditText
                 android:id="@+id/registerName"
@@ -30,7 +35,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
+                android:textColorHint="@color/gray"
                 android:hint="Full Name"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +50,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
+                android:textColorHint="@color/gray"
                 android:ems="10"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
@@ -59,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
+                android:textColorHint="@color/gray"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
@@ -74,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
+                android:textColorHint="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
@@ -90,7 +95,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorBlack"
+                android:textColorHint="@color/gray"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="16dp"
