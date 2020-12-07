@@ -160,7 +160,7 @@
                 android:layout_marginEnd="16dp"
                 android:textStyle="italic"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/custom_edits"
+                android:background="@drawable/empty_button"
                 android:text="Login"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -53,7 +53,7 @@
         android:text="Add"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:background="@drawable/custombuttons"
+        android:background="@drawable/confirm_order_btn"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         />

@@ -22,7 +22,7 @@
             android:layout_height="300dp"
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/chef2"
+            app:srcCompat="@drawable/login_img"
             android:layout_marginTop="8dp"/>
 
         <EditText
@@ -72,7 +72,7 @@
             android:text="Register"
             android:textStyle="italic"
             android:textSize="17sp"
-            android:background="@drawable/custom_edits"
+            android:background="@drawable/empty_button"
             android:layout_below="@id/loginBtn"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"

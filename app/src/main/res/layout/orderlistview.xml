@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:background="@drawable/divider">
+        android:background="@drawable/orderlist_backgnd">
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:textSize="15sp"/>
         <Button
             android:id="@+id/delete_btn"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

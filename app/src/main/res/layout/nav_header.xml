@@ -9,10 +9,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:layout_width="109dp"
-        android:layout_height="100dp"
-        android:src="@drawable/chefside"
-        android:paddingBottom="10dp"/>
+        android:layout_width="72dp"
+        android:layout_height="129dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:src="@drawable/navigation_img" />
 
     <LinearLayout
         android:layout_width="wrap_content"
