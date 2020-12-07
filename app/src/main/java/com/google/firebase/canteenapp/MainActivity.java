@@ -271,6 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       //  mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         detachDatabaseLisener();
         mItemAdapter.clear();
+        finish();
 
     }
     @Override
